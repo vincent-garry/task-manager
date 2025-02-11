@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Rediriger les requêtes non-backend vers public_html
+RewriteCond %{REQUEST_URI} !^/backend/
+RewriteCond %{REQUEST_URI} !^/public_html/
+RewriteRule ^(.*)$ public_html/$1 [L]
