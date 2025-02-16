@@ -14,35 +14,32 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(email: string, password: string) {
       try {
-        console.log('Tentative de connexion avec:', { email, password });
         const response = await api.post('/auth/login', {
           email,
           password
-        });
-        
-        console.log('Réponse du serveur:', response.data);
+        })
         
         if (response.data.access_token) {
-          this.token = response.data.access_token;
-          this.user = response.data.user;
+          this.token = response.data.access_token
+          this.user = response.data.user
           
-          localStorage.setItem('token', this.token);
-          localStorage.setItem('user', JSON.stringify(this.user));
+          localStorage.setItem('token', this.token)
+          localStorage.setItem('user', JSON.stringify(this.user))
           
-          return true;
+          return true
         }
-        return false;
+        return false
       } catch (error) {
-        console.error('Erreur de connexion:', error.response?.data || error);
-        return false;
+        console.error('Erreur de connexion:', error)
+        return false
       }
     },
     
     logout() {
-      this.token = null;
-      this.user = null;
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      this.token = null
+      this.user = null
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
     }
   }
-});
+})

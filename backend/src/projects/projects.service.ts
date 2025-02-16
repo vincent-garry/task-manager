@@ -40,9 +40,20 @@ export class ProjectsService {
       }
 
       async remove(id: number, userId: number): Promise<void> {
-        const project = await this.findOne(id, userId);
-        if (project) {
-          await project.destroy();
+        console.log('ProjectsService - Attempting to remove project:', { id, userId });
+        try {
+            const project = await this.findOne(id, userId);
+            console.log('ProjectsService - Project found:', project);
+            
+            if (project) {
+                await project.destroy();
+                console.log('ProjectsService - Project successfully deleted');
+            } else {
+                console.log('ProjectsService - Project not found');
+            }
+        } catch (error) {
+            console.error('ProjectsService - Error removing project:', error);
+            throw error;
         }
-      }
+    }
 }

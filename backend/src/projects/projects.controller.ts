@@ -27,4 +27,9 @@ export class ProjectsController {
     update(@Param('id') id: string, @Body() updateProjectDto: CreateProjectDto, @Request() req) {
         return this.projectsService.update(+id, updateProjectDto, req.user.userId);
     }
+
+    @Delete(':id')
+    async remove(@Param('id') id: string, @Request() req) {
+        return this.projectsService.remove(+id, req.user.userId);
+    }
 }
