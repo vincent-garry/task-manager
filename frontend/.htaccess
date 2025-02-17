@@ -1,7 +1,0 @@
-RewriteEngine On
-DirectoryIndex index.html
-
-# Routes SPA
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.html [L]
